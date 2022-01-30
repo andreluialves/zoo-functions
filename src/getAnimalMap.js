@@ -1,51 +1,92 @@
 const data = require('../data/zoo_data');
 
-const { species } = data;
+// const { species } = data;
 
-const callBackByLocality = (acc, curr) => { // Callback
-  const { name, location } = curr;
-  if (!acc[location]) {
-    acc[location] = [];
-  }
-  acc[location].push(name);
-  return acc;
-};
+// // Callback
+// const callBackByLocality = (acc, curr) => {
+//   const { name, location } = curr;
+//   if (!acc[location]) {
+//     acc[location] = [];
+//   }
+//   acc[location].push(name);
+//   return acc;
+// };
 
-const namesByLocality = () => species.reduce(callBackByLocality, {}); // Return names by locality.
+// // Return names by locality.
+// const namesByLocality = (options) => species.reduce(callBackByLocality, {});
 
-const callBackNamesResidents = (acc, curr) => { // Callback
-  const { name, location, residents } = curr;
-  // const { sex } = residents;
-  if (!acc[location]) {
-    acc[location] = [];
-  }
-  acc[location].push({ [name]: residents.map((resident) => resident.name) });
-  return acc;
-};
+// // Callback
+// const callBackNamesResidents = (acc, curr) => {
+//   const { name, location, residents } = curr;
+//   if (!acc[location]) {
+//     acc[location] = [];
+//   }
+//   const filterResidents = residents.map((element) => element.name);
+//   acc[location].push({ [name]: filterResidents });
+//   return acc;
+// };
 
-const byNames = (sorted, sex) => species.reduce(callBackNamesResidents, {}); // Return names and residents.
+// // Return names and residents.
+// const namesResidents = (options) => species.reduce(callBackNamesResidents, {});
+
+// // Callback
+// const callBackNamesResidSort = (acc, curr) => {
+//   const { name, location, residents } = curr;
+//   if (!acc[location]) {
+//     acc[location] = [];
+//   }
+//   const filterResidents = residents.map((element) => element.name);
+//   acc[location].push({ [name]: filterResidents.sort() });
+//   return acc;
+// };
+
+// const namesResidentsSort = (options) => species.reduce(callBackNamesResidSort, {});
+
+// // Callback
+// const callBackResidentsSex = (acc, curr) => {
+//   const { name, location, residents } = curr;
+//   if (!acc[location]) {
+//     acc[location] = [];
+//   }
+//   const filterSex = residents.filter((element) => element.sex === options.sex);
+//   const filterResidents = filterSex.map((element) => element.name);
+//   acc[location].push({ [name]: filterResidents });
+//   return acc;
+// };
+
+// const namesResidentsSex = (options) => species.reduce(callBackResidentsSex, {});
+
+// // Callback
+// const callBackResidentsSexSort = (acc, curr) => {
+//   const { name, location, residents } = curr;
+//   if (!acc[location]) {
+//     acc[location] = [];
+//   }
+//   const filterSex = residents.filter((element) => element.sex === options.sex);
+//   const filterResidents = filterSex.map((element) => element.name);
+//   acc[location].push({ [name]: filterResidents.sort() });
+//   return acc;
+// };
+
+// const namesResidentsSexSort = (options) => species.reduce(callBackResidentsSexSort, {});
 
 function getAnimalMap(options) {
-  if (!options || !options.includeNames) { return namesByLocality(); }
-  // if (options.includeNames && options.sorted && options.sex) { return byNames(); }
-  if (options.includeNames) { return byNames(); }
-  // if (options.sorted === true && !options.sorted && options.includeNames) { return byNames(); }
+  // if (!options || !options.includeNames) { return namesByLocality(); }
+  // if (options.includeNames && options.sorted === true) { return namesResidentsSort(options); }
+  // if (options.includeNames && options.sex && options.sorted !== true) { return namesResidentsSex(options); }
+  // if (options.includeNames && options.sex && options.sorted === true) { return namesResidentsSexSort(options); }
+  // if (options.includeNames) { return namesResidents(); }
 
-  return namesByLocality();
+  // return namesByLocality();
 }
-
-// const expected = {
-//   NE: ['lions', 'giraffes'],
-//   NW: ['tigers', 'bears', 'elephants'],
-//   SE: ['penguins', 'otters'],
-//   SW: ['frogs', 'snakes'],
-// };
 
 // const options = { sex: 'female', sorted: true };
 // const options = { includeNames: true };
-const options = { includeNames: true, sorted: true };
+// const options = { includeNames: true, sex: 'female' };
+// const options = { includeNames: true, sex: 'female', sorted: true };
+// const options = { includeNames: true, sorted: true };
 
 // console.log(getAnimalMap(expected));
-console.log(getAnimalMap(options));
+// console.log(getAnimalMap(options));
 
 module.exports = getAnimalMap;

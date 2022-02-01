@@ -2,6 +2,9 @@ const data = require('../data/zoo_data');
 
 const { species } = data;
 
+/* Usei como referência a solução da Luá Octaviano usando reduce e desestruturando cada objeto de 'Species'
+dentro do reduce --> https://github.com/tryber/sd-19-a-project-zoo-functions/pull/111 */
+
 // Return names by locality.
 const namesByLocality = (options) => species.reduce(
   (acc, curr) => {
